@@ -13,11 +13,17 @@
 		"vscode": {
 			// Add the IDs of extensions you want installed when the container is created.
 			"extensions": [
+				"Vue.volar",
 				"dbaeumer.vscode-eslint",
+				"esbenp.prettier-vscode",
 				"SonarSource.sonarlint-vscode",
-				"mhutchie.git-graph",
-				"eamodio.gitlens"
-			]
+				"mhutchie.git-graph"
+			],
+			"settings": {
+				"typescript.tsdk": "node_modules/typescript/lib",
+				"editor.formatOnSave": true,
+				"editor.defaultFormatter": "esbenp.prettier-vscode"
+			}
 		}
 	},
 
