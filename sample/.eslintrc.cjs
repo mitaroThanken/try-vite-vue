@@ -23,5 +23,14 @@ module.exports = {
       extends: ['plugin:@typescript-eslint/disable-type-checked'],
       files: ['./**/*.js', './**/*.jsx', './**/*.cjs', './**/*.mjs']
     }
-  ]
+  ],
+  rules: {
+    '@typescript-eslint/consistent-type-imports': [
+      'error',
+      {
+        prefer: 'type-imports',
+        fixStyle: 'inline-type-imports'
+      }
+    ]
+  }
 }

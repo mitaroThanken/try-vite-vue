@@ -1,9 +1,9 @@
 import { fileURLToPath, URL } from 'node:url'
 
-import { CorsOptions, defineConfig } from 'vite'
+import { type CorsOptions, defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 
-import { SecureContextOptions } from 'tls'
+import { type SecureContextOptions } from 'tls'
 import fs from 'fs'
 
 const HOST = 'sample'
