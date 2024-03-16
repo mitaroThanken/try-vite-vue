@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import { useCounterStore } from '../stores/counter'
+import { ref } from 'vue';
+import { useCounterStore } from '../stores/counter';
 
-const store = useCounterStore()
-const localCount = ref(0)
+const store = useCounterStore();
+const localCount = ref(0);
 
 const increment = () => {
-  localCount.value++
-  store.increment()
-}
+  localCount.value++;
+  store.increment();
+};
 </script>
 
 <template>
