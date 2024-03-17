@@ -1,6 +1,6 @@
 services:
   haproxy:
-    image: haproxy-with-minica/haproxy
+    image: try-vite-vue/haproxy
     build:
       context: ./haproxy
       target: haproxy

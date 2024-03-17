@@ -1,37 +1,35 @@
-# HAProxy with jsha/minica
+# Try Vite Vue
 
-## Modify virtual host's name
+WIP...
+
+## Environment
+
+See template [haproxy-with-minica](https://github.com/mitaroThanken/haproxy-with-minica).
+
+### Modify virtual host's name
 
 Edit `VHOST_NAME` in `.env` file.
 
-## Make certs
+### Make certs
 
 ```shell
-docker buildx build --build-arg $(tail -n1 .env) -t haproxy-with-minica/certs certs/
+docker buildx build --build-arg $(tail -n1 .env) -t try-vite-vue/certs certs/
 ```
 
-## Export certs
+### Export certs
 
 ```shell
 docker compose up -d --build
 ```
 
 ```shell
-docker container cp haproxy-with-minica-haproxy-1:/usr/local/etc/haproxy/certs - | tar xv
+docker container cp try-vite-vue-haproxy-1:/usr/local/etc/haproxy/certs - | tar xv
 ```
 
 ```shell
 docker compose down
 ```
 
-## Install trusted root certification
+### Install trusted root certification
 
 Install `certs/minica.crt` to Trusted Root Certification Authorities.
-
-## Prebuild dev container images
-
-See [devcontainer-images-prebuild/README.md](./devcontainer-images-prebuild/README.md).
-
----
-
-(WIP)
