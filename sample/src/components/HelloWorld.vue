@@ -12,6 +12,7 @@ defineProps<{
       <a href="https://vitejs.dev/" target="_blank" rel="noopener">Vite</a> +
       <a href="https://vuejs.org/" target="_blank" rel="noopener">Vue 3</a>. What's next?
     </h3>
+    <h3 class="text-3xl font-bold underline">Hello, Tailwind CSS!</h3>
   </div>
 </template>
 
