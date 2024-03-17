@@ -4,7 +4,7 @@ import { onBeforeUnmount, onMounted, ref } from 'vue';
 /** ドロップダウンの開閉（v-model） */
 const open = defineModel<boolean>('open', { default: false });
 
-/** ドロップダウンの開閉（イベント） */
+/** ドロップダウンの開閉（emit） */
 const emit = defineEmits<{
   toggle: [open: boolean];
 }>();
@@ -43,8 +43,33 @@ const handleToggle = (e: Event) => {
 
 // イベントハンドラーの着脱
 onMounted(() => {
+  // ドロップダウン外のクリックを検出するイベントハンドラを割付
   window.addEventListener('click', handleClick);
-  dropdownRef.value?.addEventListener('toggle', handleToggle);
+
+  // ガード
+  const dropdown = dropdownRef.value;
+  if (dropdown === null) {
+    console.error('dropdownRef is null, why?');
+    return;
+  }
+
+  // ドロップダウンのトグルを扱うイベントハンドラを割付
+  dropdown.addEventListener('toggle', handleToggle);
+
+  // ドロップダウンの小要素を得る
+  const children = dropdown.children;
+
+  // 小要素は summary とコンテンツの 2要素のはずだが……
+  if (children.length < 2) {
+    console.error('content is not found.');
+  } else if (children.length > 2) {
+    console.warn('content is children.');
+  }
+
+  // ドロップダウンのコンテンツにCSSクラスを追加
+  for (let i = 1; i < children.length; i++) {
+    children[i].classList.add('dropdown-content');
+  }
 });
 onBeforeUnmount(() => {
   window.removeEventListener('click', handleClick);

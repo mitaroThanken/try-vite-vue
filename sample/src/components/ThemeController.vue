@@ -18,7 +18,7 @@ const handleToggle = (current: boolean) => {
 <template>
   <TheDropdown ref="dropdownRef" v-model:open="dropdownOpen" @toggle="handleToggle">
     <template #summary> Theme </template>
-    <ul class="dropdown-content z-[1] w-52 rounded-box bg-base-300 p-2 shadow-2xl">
+    <ul class="z-[1] w-52 rounded-box bg-base-300 p-2 shadow-2xl">
       <li>
         <input
           type="radio"
