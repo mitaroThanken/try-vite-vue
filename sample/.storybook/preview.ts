@@ -1,3 +1,5 @@
+import '../src/assets/tailwind.css';
+
 import type { Preview } from '@storybook/vue3';
 
 const preview: Preview = {
