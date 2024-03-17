@@ -9,6 +9,7 @@ module.exports = {
     'plugin:vue/vue3-recommended',
     'plugin:@typescript-eslint/strict-type-checked',
     '@vue/eslint-config-typescript/recommended',
+    'plugin:tailwindcss/recommended',
     '@vue/eslint-config-prettier/skip-formatting',
   ],
   parser: 'vue-eslint-parser',
