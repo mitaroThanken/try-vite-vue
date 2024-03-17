@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import ThemeController from '@/components/ThemeController.vue';
+
 defineProps<{
   msg: string;
 }>();
@@ -13,6 +15,7 @@ defineProps<{
       <a href="https://vuejs.org/" target="_blank" rel="noopener">Vue 3</a>. What's next?
     </h3>
     <h3 class="text-3xl font-bold underline">Hello, Tailwind CSS!</h3>
+    <ThemeController />
   </div>
 </template>
 

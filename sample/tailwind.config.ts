@@ -8,6 +8,7 @@ export default {
   },
   plugins: [daisyui],
   daisyui: {
+    themes: true,
     logs: false,
   },
 } satisfies Config;
