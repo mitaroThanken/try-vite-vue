@@ -14,6 +14,7 @@
       // Add the IDs of extensions you want installed when the container is created.
       "extensions": [
         "Vue.volar",
+        "bradlc.vscode-tailwindcss",
         "dbaeumer.vscode-eslint",
         "esbenp.prettier-vscode",
         "SonarSource.sonarlint-vscode",
@@ -22,7 +23,13 @@
       "settings": {
         "typescript.tsdk": "node_modules/typescript/lib",
         "editor.formatOnSave": true,
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "files.associations": {
+          "*.css": "tailwindcss"
+        },
+        "editor.quickSuggestions": {
+          "strings": "on"
+        }
       }
     }
   },
