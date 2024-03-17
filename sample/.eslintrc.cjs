@@ -4,14 +4,7 @@ require('@rushstack/eslint-patch/modern-module-resolution');
 module.exports = {
   root: true,
   plugins: ['vue', '@typescript-eslint'],
-  extends: [
-    'eslint:recommended',
-    'plugin:vue/vue3-recommended',
-    'plugin:@typescript-eslint/strict-type-checked',
-    '@vue/eslint-config-typescript/recommended',
-    'plugin:tailwindcss/recommended',
-    '@vue/eslint-config-prettier/skip-formatting',
-  ],
+  extends: ['eslint:recommended', 'plugin:vue/vue3-recommended', 'plugin:@typescript-eslint/strict-type-checked', '@vue/eslint-config-typescript/recommended', 'plugin:tailwindcss/recommended', '@vue/eslint-config-prettier/skip-formatting', 'plugin:storybook/recommended'],
   parser: 'vue-eslint-parser',
   parserOptions: {
     ecmaVersion: 'latest',
