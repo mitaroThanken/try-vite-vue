@@ -12,11 +12,9 @@ const increment = () => {
 </script>
 
 <template>
-  <div class="counter">
-    <h1>This is an counter</h1>
-    <p>localCount: {{ localCount }}</p>
-    <p>store.count: {{ store.count }}</p>
-    <p>store.doubleCount: {{ store.doubleCount }}</p>
-    <button @click="increment">increment</button>
-  </div>
+  <h1>This is an counter</h1>
+  <p>localCount: {{ localCount }}</p>
+  <p>store.count: {{ store.count }}</p>
+  <p>store.doubleCount: {{ store.doubleCount }}</p>
+  <button class="btn btn-primary rounded-full" @click="increment">increment</button>
 </template>
