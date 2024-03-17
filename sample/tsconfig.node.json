@@ -7,7 +7,7 @@
     "nightwatch.conf.*",
     "playwright.config.*",
     "postcss.config.js",
-    "tailwind.config.js"
+    "tailwind.config.*"
   ],
   "compilerOptions": {
     "composite": true,
