@@ -1,52 +1,23 @@
 <script setup lang="ts">
-import { onBeforeUnmount, onMounted, ref } from 'vue';
+import { ref } from 'vue';
+import TheDropdown from '@/components/TheDropdown.vue';
 
-/** ドロップダウンとして取り扱う details */
-const themeDropdownRef = ref<HTMLDetailsElement | null>(null);
+// v-model のテスト：ドロップダウンを開いた状態を初期状態としてみる
+const dropdownOpen = ref<boolean>(true);
 
-/**
- * ドロップダウン外がクリックされたら、ドロップダウンを閉じる
- */
-const handleClick = (e: MouseEvent) => {
-  // ガード（実際には素通りするはず）
-  if (themeDropdownRef.value === null) return;
+// ref を確保し
+const dropdownRef = ref<InstanceType<typeof TheDropdown> | null>(null);
 
-  // ドロップダウン外がクリックされたら、ドロップダウンを閉じる
-  if (
-    // ドロップダウンが開いていて、
-    themeDropdownRef.value.open &&
-    // このコンポーネントのドロップダウン（＝details）の子でなければ
-    (!(e.target instanceof HTMLElement) || e.target.closest('details') !== themeDropdownRef.value)
-  ) {
-    // （ドロップダウン外のクリックであるはずなので）強制的に閉じる
-    themeDropdownRef.value.open = false;
-  }
-  // デフォルトの挙動は抑制しない
+// イベントハンドラと v-model で提供された値のテスト
+const handleToggle = (current: boolean) => {
+  console.info('dropdown.toggle', current);
+  console.info('v-model:open', dropdownOpen.value);
 };
-
-// イベントハンドラーの着脱
-onMounted(() => {
-  window.addEventListener('click', handleClick);
-});
-onBeforeUnmount(() => {
-  window.removeEventListener('click', handleClick);
-});
 </script>
 
 <template>
-  <details ref="themeDropdownRef" class="dropdown">
-    <summary tabindex="0" role="button" class="btn m-1">
-      Theme
-      <svg
-        width="12px"
-        height="12px"
-        class="inline-block size-2 fill-current opacity-60"
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 2048 2048"
-      >
-        <path d="M1799 349l242 241-1017 1017L7 590l242-241 775 775 775-775z"></path>
-      </svg>
-    </summary>
+  <TheDropdown ref="dropdownRef" v-model:open="dropdownOpen" @toggle="handleToggle">
+    <template #summary> Theme </template>
     <ul class="dropdown-content z-[1] w-52 rounded-box bg-base-300 p-2 shadow-2xl">
       <li>
         <input
@@ -94,5 +65,5 @@ onBeforeUnmount(() => {
         />
       </li>
     </ul>
-  </details>
+  </TheDropdown>
 </template>
