@@ -11,7 +11,10 @@
     "build-only": "vite build",
     "type-check": "vue-tsc --build --force",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
-    "format": "prettier --write src/"
+    "format": "prettier --write src/",
+    "story:dev": "histoire dev",
+    "story:build": "histoire build",
+    "story:preview": "histoire preview"
   },
   "dependencies": {
     "pinia": "^2.1.7",
@@ -45,6 +48,8 @@
     "typescript": "~5.4.0",
     "vite": "^5.1.6",
     "vitest": "^1.4.0",
+    "vscode-oniguruma": "^2.0.1",
+    "vscode-textmate": "^9.0.0",
     "vue-tsc": "^2.0.6"
   }
 }
