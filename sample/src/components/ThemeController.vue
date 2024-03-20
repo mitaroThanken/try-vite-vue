@@ -1,67 +1,53 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 import TheDropdown from '@/components/TheDropdown.vue';
 
-// v-model のテスト：ドロップダウンを開いた状態を初期状態としてみる
-const dropdownOpen = ref<boolean>(true);
+/** ローカルストレージ上のキー */
+const LOCAL_STORAGE_KEY = 'theme';
 
-// ref を確保し
-const dropdownRef = ref<InstanceType<typeof TheDropdown> | null>(null);
+/** テーマ */
+const THEMES = ['default', 'retro', 'cyberpunk', 'valentine', 'aqua'];
 
-// イベントハンドラと v-model で提供された値のテスト
-const handleToggle = (current: boolean) => {
-  console.info('dropdown.toggle', current);
-  console.info('v-model:open', dropdownOpen.value);
+/** 先頭一文字を大文字にする */
+const ucFirst = (s: string) => `${s.at(0)?.toLocaleUpperCase()}${s.slice(1)}`;
+
+/** 現時点のテーマ */
+const currentTheme = ref(THEMES[0]);
+
+/** テーマ選択時の処理 */
+const handleInput = (e: Event) => {
+  // 型の絞り込み
+  if (!(e.target instanceof HTMLInputElement)) return;
+
+  // 選択されたテーマを現時点のテーマとローカルストレージに反映
+  currentTheme.value = e.target.value;
+  localStorage.setItem(LOCAL_STORAGE_KEY, e.target.value);
 };
+
+onMounted(() => {
+  // マウント時にローカルストレージを参照
+  let nextTheme = localStorage.getItem(LOCAL_STORAGE_KEY);
+  // ローカルストレージになかったり、想定外の値だったら
+  if (nextTheme === null || !THEMES.includes(nextTheme)) {
+    nextTheme = THEMES[0];
+  }
+  currentTheme.value = nextTheme;
+});
 </script>
 
 <template>
-  <TheDropdown ref="dropdownRef" v-model:open="dropdownOpen" @toggle="handleToggle">
+  <TheDropdown>
     <template #summary> Theme </template>
     <ul class="z-[1] w-52 rounded-box bg-base-300 p-2 shadow-2xl">
-      <li>
+      <li v-for="theme in THEMES" :key="theme">
         <input
           type="radio"
           name="theme-dropdown"
           class="theme-controller btn btn-ghost btn-sm btn-block justify-start"
-          aria-label="Default"
-          value="default"
-        />
-      </li>
-      <li>
-        <input
-          type="radio"
-          name="theme-dropdown"
-          class="theme-controller btn btn-ghost btn-sm btn-block justify-start"
-          aria-label="Retro"
-          value="retro"
-        />
-      </li>
-      <li>
-        <input
-          type="radio"
-          name="theme-dropdown"
-          class="theme-controller btn btn-ghost btn-sm btn-block justify-start"
-          aria-label="Cyberpunk"
-          value="cyberpunk"
-        />
-      </li>
-      <li>
-        <input
-          type="radio"
-          name="theme-dropdown"
-          class="theme-controller btn btn-ghost btn-sm btn-block justify-start"
-          aria-label="Valentine"
-          value="valentine"
-        />
-      </li>
-      <li>
-        <input
-          type="radio"
-          name="theme-dropdown"
-          class="theme-controller btn btn-ghost btn-sm btn-block justify-start"
-          aria-label="Aqua"
-          value="aqua"
+          :aria-label="ucFirst(theme)"
+          :value="theme"
+          :checked="currentTheme === theme"
+          @input="handleInput"
         />
       </li>
     </ul>
