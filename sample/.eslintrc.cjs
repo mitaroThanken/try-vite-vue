@@ -11,6 +11,7 @@ module.exports = {
     '@vue/eslint-config-typescript/recommended',
     'plugin:tailwindcss/recommended',
     '@vue/eslint-config-prettier/skip-formatting',
+    'plugin:storybook/recommended',
   ],
   parser: 'vue-eslint-parser',
   parserOptions: {
@@ -31,6 +32,14 @@ module.exports = {
       {
         prefer: 'type-imports',
         fixStyle: 'inline-type-imports',
+      },
+    ],
+    '@typescript-eslint/no-unused-vars': [
+      'error',
+      {
+        argsIgnorePattern: '^_',
+        caughtErrorsIgnorePattern: '^_',
+        destructuredArrayIgnorePattern: '^_',
       },
     ],
   },

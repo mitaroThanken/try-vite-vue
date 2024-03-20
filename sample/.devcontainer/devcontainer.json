@@ -17,6 +17,7 @@
         "bradlc.vscode-tailwindcss",
         "dbaeumer.vscode-eslint",
         "esbenp.prettier-vscode",
+        "bierner.lit-html",
         "EditorConfig.EditorConfig",
         "SonarSource.sonarlint-vscode",
         "mhutchie.git-graph"
